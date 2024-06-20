@@ -1,0 +1,52 @@
+<div class="title-container">
+  <h2 class="title">Registro de Registros Educativos</h2>
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+    <br />
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuario</mat-label>
+      <mat-select formControlName="user">
+        <mat-option *ngFor="let u of listaUsuarios" [value]="u.id">
+          {{ u.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('user')?.hasError('required')"
+        >El usuario es obligatorio.</mat-error
+      >
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Tipo de recurso: </mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option *ngFor="let e of estado" [value]="e.value">
+          {{ e.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('tipo')?.hasError('required')"
+        >El tipo es obligatorio.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Descripción del Recurso:</mat-label>
+      <textarea matInput placeholder="Descripción" formControlName="descripcion"></textarea>
+      <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+        >La descripción es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Estado de recurso: </mat-label>
+      <mat-select formControlName="estado">
+        <mat-option *ngFor="let r of reestado" [value]="r.value">
+          {{ r.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('estado')?.hasError('required')"
+        >El estado es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+    <button mat-raised-button color="primary">Aceptar</button>
+    <button mat-raised-button color="warn" routerLink="/metas">
+      Cancelar
+    </button>
+  </form>
+</div>

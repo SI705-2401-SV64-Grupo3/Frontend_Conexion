@@ -1,0 +1,75 @@
+<div class="title-container">
+  <h2 class="title">Registro de recordatorio</h2>
+</div>
+<div class="title-container">
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+    <mat-form-field class="example-full-width" *ngIf="edicion">
+      <mat-label>Codigo: </mat-label>
+      <input matInput placeholder="Codigo" formControlName="codigo" />
+    </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Usuario: </mat-label>
+    <mat-select formControlName="usuario">
+      <mat-option *ngFor="let u of listaUsuarios" [value]="u.id">
+        {{ u.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+      >El usuario es obligatorio.</mat-error>
+  </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="example-full-width">
+      <input matInput placeholder="Ingrese la fecha del recordatorio" [matDatepicker]="picker" formControlName="fecha" [max]="minFecha"/>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('fecha')?.hasError('required')"
+        >La fecha es obligatoria.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Hora: </mat-label>
+      <input type="" matInput placeholder="Ingrese la hora en formato HH:MM:SS" formControlName="hora"/>
+      <mat-error *ngIf="form.get('hora')?.hasError('required')"
+        >La hora es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Asunto: </mat-label>
+      <input type="" matInput placeholder="Ingrese el asunto" formControlName="asunto"/>
+      <mat-error *ngIf="form.get('asunto')?.hasError('required')"
+        >El asunto es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Mensaje: </mat-label>
+      <input matInput placeholder="Ingrese su mensaje" formControlName="mensaje"/>
+      <mat-error *ngIf="form.get('mensaje')?.hasError('required')"
+        >El mensaje es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Estado: </mat-label>
+      <mat-select formControlName="estado">
+        <mat-option *ngFor="let e of estado" [value]="e.value">
+          {{ e.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('estado')?.hasError('required')"
+        >El estado es obligatorio.</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+    <button mat-raised-button color="primary">Aceptar</button>
+    <span style="margin-right:10px;"></span>
+    <button mat-raised-button color="warn" routerLink="/recordatorio">
+      <mat-icon> cancel_presentation</mat-icon>
+    </button>
+  </form>
+</div>

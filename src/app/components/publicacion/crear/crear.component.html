@@ -1,0 +1,66 @@
+<div class="title-container ">
+  <div>
+    <h3>Publicaciones</h3>
+  </div>
+
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+    <br />
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuarios</mat-label>
+      <mat-select formControlName="usuario">
+        <mat-option *ngFor="let u of listaUsuarios" [value]="u.id">
+          {{ u.username }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('usuario')?.hasError('required')">El usuario es obligatorio.</mat-error>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <mat-label>Contenido</mat-label>
+      <input matInput formControlName="content" />
+      <mat-error *ngIf="form.get('content')?.hasError('required')">La extensión es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <br />
+    <mat-form-field>
+      <mat-label>Fecha de creación</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('date')?.hasError('required')">La fecha es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Hora</mat-label>
+      <input matInput formControlName="hour" />
+      <mat-error *ngIf="form.get('hour')?.hasError('required')">La hora es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <br />
+    <mat-form-field>
+      <mat-label>Likes</mat-label>
+      <input matInput formControlName="likes" />
+      <mat-error *ngIf="form.get('likes')?.hasError('required')">Los likes es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <mat-label>Compartidos</mat-label>
+      <input matInput formControlName="shared" />
+      <mat-error *ngIf="form.get('shared')?.hasError('required')">Los compartidos es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <br />
+
+
+
+    <button mat-raised-button color="primary">Registrar</button>
+  </form>
+</div>

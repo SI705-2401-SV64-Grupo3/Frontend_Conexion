@@ -1,0 +1,108 @@
+<div class="title-container ">
+    <div><h1>Registro</h1></div>
+    <form [formGroup]="form" (submit)="registrar()">
+  
+        <mat-form-field class="example-full-width">
+            <mat-label>Usuario 1</mat-label>
+            <mat-select formControlName="usuario1">
+              <mat-option *ngFor="let c of listaUsuario" [value]="c.id">
+                {{ c.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('usuario1')?.hasError('required')"
+              >El usuario es obligatorio.</mat-error
+            >
+          </mat-form-field>
+     
+     <br>
+
+     <mat-form-field class="example-full-width">
+        <mat-label>Usuario 2</mat-label>
+        <mat-select formControlName="usuario2">
+          <mat-option *ngFor="let d of listaUsuario" [value]="d.id">
+            {{ d.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('usuario2')?.hasError('required')"
+          >La conversacion es obligatorio.</mat-error
+        >
+      </mat-form-field>
+ 
+ <br>
+
+        <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo"  readonly />
+      </mat-form-field>
+  
+
+    
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre de la actividad</mat-label>
+        <input matInput placeholder="nombre" formControlName="nombre" />
+        <mat-error *ngIf="form.get('nombre')?.hasError('required')"
+          >El contenido del mensaje es obligatorio.</mat-error
+        >
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripcion de la actividad</mat-label>
+        <input matInput placeholder="descripcion" formControlName="descripcion" />
+        <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+          >El contenido del mensaje es obligatorio.</mat-error
+        >
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field appearance="fill" class="example-full-width">
+        <input
+          matInput
+          placeholder="Ingrese fecha de la actividad"
+          [matDatepicker]="picker"
+          formControlName="fecha"
+          
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('fecha')?.hasError('required')"
+          >La fecha es obligatoria.</mat-error
+        >
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Duracion</mat-label>
+        <input matInput type="Ingrese duracion de la actividad" formControlName="duracion" placeholder="HH:MM" />
+        <mat-error *ngIf="form.get('duracion')?.hasError('required')">
+          La duracion de la actividad es obligatoria.
+        </mat-error>
+      </mat-form-field>
+  
+      <br>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Lugar</mat-label>
+        <input matInput placeholder="lugar" formControlName="lugar" />
+        <mat-error *ngIf="form.get('lugar')?.hasError('required')"
+          >El lugar de la actividad es obligatorio.</mat-error
+        >
+      </mat-form-field>
+
+      <br>   
+
+      <button mat-raised-button color="primary">Registrar</button>
+      <button mat-raised-button color="warn" routerLink="/Actividades">
+        Cancelar
+      </button>
+    </form>
+  </div>

@@ -1,0 +1,94 @@
+<div class="title-container">
+  <h2 class="title">Registro de usuario</h2>
+</div>
+<div class="title-container">
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+    <mat-form-field class="example-full-width" *ngIf="edicion">
+      <mat-label>Codigo: </mat-label>
+      <input matInput placeholder="Codigo" formControlName="codigo" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Id del padre:</mat-label>
+      <input type="number" matInput placeholder="Ingrese el 'id' del padre" formControlName="idpadre"/>
+    </mat-form-field>
+  <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuario: </mat-label>
+      <input matInput placeholder="Ingrese un nombre de usuario" formControlName="usuario"/>
+      <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+        >El usuario es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Contraseña: </mat-label>
+      <input type="password" matInput placeholder="Ingrese una contraseña" formControlName="contraseña"/>
+      <mat-error *ngIf="form.get('contraseña')?.hasError('required')"
+        >La contraseña es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombre: </mat-label>
+      <input matInput placeholder="Ingrese su nombre de pila" formControlName="nombre"/>
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')"
+        >El campo nombre es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Apellidos: </mat-label>
+      <input matInput placeholder="Ingrese sus apellidos" formControlName="apellidos"/>
+      <mat-error *ngIf="form.get('apellidos')?.hasError('required')"
+        >El campo apellido es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Correo electronico: </mat-label>
+      <input type="email" matInput placeholder="Ingrese su correo electronico" formControlName="email"/>
+      <mat-error *ngIf="form.get('email')?.hasError('required')"
+        >El correo es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="example-full-width">
+      <input matInput placeholder="Ingrese la fecha de su nacimiento" [matDatepicker]="picker" formControlName="nacimiento" [max]="maxFecha"/>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('nacimiento')?.hasError('required')"
+        >La fecha de nacimiento es obligatoria.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Genero: </mat-label>
+      <mat-select formControlName="genero">
+        <mat-option *ngFor="let g of genero" [value]="g.value">
+          {{ g.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('ubicacion')?.hasError('required')"
+        >El genero es obligatorio.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Descripcion: </mat-label>
+      <input matInput placeholder="Ingrese una breve descripcion de usted" formControlName="descripcion" />
+      <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+        >La descripcion es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Preferencias: </mat-label>
+      <input matInput placeholder="Ingrese sus preferencias" formControlName="preferencia" />
+      <mat-error *ngIf="form.get('preferencia')?.hasError('required')"
+        >La preferencia es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <br />
+    <button mat-raised-button color="primary">Aceptar</button>
+    <span style="margin-right:10px;"></span>
+    <button mat-raised-button color="warn" routerLink="/areas">
+      <mat-icon> cancel_presentation</mat-icon>
+    </button>
+  </form>
+</div>

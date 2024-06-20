@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="title-container">
+    <h2 class="title">Lista de Usuarios</h2>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Name Column
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef>Tipo de usuario</th>
+      <td mat-cell *matCellDef="let element">{{ element.idFather }}</td>
+    </ng-container>
+-->
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef>Tipo de usuario</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="element.idFather != null && element.idFather !== 0" class="badge adolescente">Adolescente</span>
+        <span *ngIf="element.idFather == null || element.idFather === 0" class="badge padre">Padre</span>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombres</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellidos">
+      <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nacimiento">
+      <th mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.birthDate }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="preferencia">
+      <th mat-header-cell *matHeaderCellDef>Preferencia</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.preference }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" [routerLink]="['ediciones', element.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <span style="margin-right:10px;"></span>
+        <button mat-raised-button color="warn" (click)="eliminar(element.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<mat-paginator
+  [pageSizeOptions]="[2, 10, 15]"
+  showFirstLastButtons
+></mat-paginator>

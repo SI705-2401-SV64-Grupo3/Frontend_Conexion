@@ -1,0 +1,30 @@
+.title-container {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 60px;
+    
+  
+  }
+
+  .container{
+    width: auto;
+    margin: 40px;
+  }
+  
+  
+  mat-form-field {
+    width: 80%;
+    margin: 20px;
+    
+  }
+  
+  mat-paginator {
+    width: 70%;
+    margin: 20px;
+  }
+  
+  h1{
+
+    color: #333;
+    text-decoration: underline;
+  }

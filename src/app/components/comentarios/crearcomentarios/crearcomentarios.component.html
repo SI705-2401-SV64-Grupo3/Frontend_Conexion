@@ -1,0 +1,45 @@
+<div class="title-container">
+    <h2 class="title">Registro de Comentarios</h2>
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <br />
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Publicacion</mat-label>
+            <mat-select formControlName="publicacion">
+                <mat-option *ngFor="let c of listaPublicaciones" [value]="c.id">
+                    {{ c.content }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('publicacion')?.hasError('required')">La publicacion es obligatoria.</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Contenido:</mat-label>
+            <textarea matInput placeholder="Contenido" formControlName="content"></textarea>
+            <mat-error *ngIf="form.get('content')?.hasError('required')">El contenido es obligatorio.</mat-error>
+        </mat-form-field>
+
+        <br />
+        <mat-form-field appearance="fill" class="example-full-width">
+            <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="date" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+
+            <mat-error *ngIf="form.get('date')?.hasError('required')">La fecha es obligatoria.</mat-error>
+        </mat-form-field>
+        <br />
+        
+        <mat-form-field class="example-full-width">
+            <mat-label>Hora:</mat-label>
+            <textarea matInput placeholder="Hora" formControlName="hour"></textarea>
+            <mat-error *ngIf="form.get('hour')?.hasError('required')">La hora es obligatoria.</mat-error>
+        </mat-form-field>
+
+        <br />
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/comentarios">
+            Cancelar
+        </button>
+    </form>
+</div>

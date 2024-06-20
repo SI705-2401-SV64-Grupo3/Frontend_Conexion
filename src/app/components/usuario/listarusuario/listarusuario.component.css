@@ -1,0 +1,30 @@
+.title-container {
+  text-align: center;
+  margin-bottom: 40px; /* Increase the margin-bottom to move the title lower */
+  margin-top: 60px; /* Add a margin-top to further position it down the page */
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 2em;
+  color: #333;
+}
+table th {
+  background-color: #e5e7e8; /* Cambia el color de los títulos de las columnas a azul */
+}
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.padre {
+  background-color: green;
+  color: white;
+}
+
+.adolescente {
+  background-color: red;
+  color: white;
+}

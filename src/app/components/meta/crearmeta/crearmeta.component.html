@@ -1,0 +1,49 @@
+<div class="title-container">
+  <h2 class="title">Registro de Metas</h2>
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+    <br />
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuario</mat-label>
+      <mat-select formControlName="userid">
+        <mat-option *ngFor="let u of listaUsuarios" [value]="u.id">
+          {{ u.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('userid')?.hasError('required')"
+        >El usuario es obligatorio.</mat-error
+      >
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombre de meta: </mat-label>
+      <textarea matInput placeholder="Nombre de meta" formControlName="nombre"></textarea>
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')"
+        >El nombre de la meta es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Descripción:</mat-label>
+      <textarea matInput placeholder="Descripción" formControlName="descripcion"></textarea>
+      <mat-error *ngIf="form.get('descripcion')?.hasError('required')"
+        >La descripción es obligatoria.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Estado de meta: </mat-label>
+      <mat-select formControlName="estado">
+        <mat-option *ngFor="let e of estatoMeta" [value]="e.value">
+          {{ e.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('estado')?.hasError('required')"
+        >El estado es obligatorio.</mat-error
+      >
+    </mat-form-field>
+    <br />
+    <button mat-raised-button color="primary">Aceptar</button>
+    <button mat-raised-button color="warn" routerLink="/metas">
+      Cancelar
+    </button>
+  </form>
+</div>

@@ -1,0 +1,100 @@
+<div class="title-container ">
+    <div><h1>Registro</h1></div>
+    <form [formGroup]="form" (submit)="registrar()">
+  
+        <mat-form-field class="example-full-width">
+            <mat-label>Usuarios</mat-label>
+            <mat-select formControlName="usuario">
+              <mat-option *ngFor="let c of listaUsuario" [value]="c.id">
+                {{ c.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+              >El usuario es obligatorio.</mat-error
+            >
+          </mat-form-field>
+     
+     <br>
+
+     <mat-form-field class="example-full-width">
+        <mat-label>Conversacion</mat-label>
+        <mat-select formControlName="conversacion">
+          <mat-option *ngFor="let d of listaConversacion" [value]="d.id">
+            {{ d.id }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('conversacion')?.hasError('required')"
+          >La conversacion es obligatorio.</mat-error
+        >
+      </mat-form-field>
+ 
+ <br>
+
+        <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo"  readonly />
+      </mat-form-field>
+  
+
+    
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Contenido</mat-label>
+        <input matInput placeholder="contenido" formControlName="contenido" />
+        <mat-error *ngIf="form.get('contenido')?.hasError('required')"
+          >El contenido del mensaje es obligatorio.</mat-error
+        >
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field appearance="fill" class="example-full-width">
+        <input
+          matInput
+          placeholder="Ingrese fecha"
+          [matDatepicker]="picker"
+          formControlName="fecha"
+          
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('fecha')?.hasError('required')"
+          >La fecha es obligatoria.</mat-error
+        >
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Hora</mat-label>
+        <input matInput type="Ingrese hora" formControlName="hora" placeholder="HH:MM:SS" />
+        <mat-error *ngIf="form.get('hora')?.hasError('required')">
+          La hora es obligatoria.
+        </mat-error>
+      </mat-form-field>
+  
+      <br>
+  
+      <mat-form-field>
+        <mat-label>Estado del Mensaje</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option *ngFor="let r of estado" [value]="r.value">
+            {{ r.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('estado')?.hasError('required')">
+            El estado del mensaje es obligatorio.</mat-error>
+      </mat-form-field>
+      <br>
+
+       <button mat-raised-button color="primary">Registrar</button>
+      <button mat-raised-button color="warn" routerLink="/Mensajes">
+        Cancelar
+      </button>
+    </form>
+  </div>

@@ -1,0 +1,43 @@
+<div class="title-container ">
+    <div><h1>Registro</h1></div>
+    <form [formGroup]="form" (submit)="registrar()">
+  
+        <mat-form-field class="example-full-width">
+            <mat-label>Usuarios</mat-label>
+            <mat-select formControlName="usuario">
+              <mat-option *ngFor="let c of listaUsuario" [value]="c.id">
+                {{ c.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('usuario')?.hasError('required')"
+              >El usuario es obligatorio.</mat-error
+            >
+          </mat-form-field>
+     
+     <br>
+        <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo"  readonly />
+      </mat-form-field>
+  
+
+    
+      <br>
+  
+      <mat-form-field>
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="rol">
+          <mat-option *ngFor="let r of roles" [value]="r.value">
+            {{ r.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('rol')?.hasError('required')">
+            El rol es obligatoria.</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary">Registrar</button>
+      <button mat-raised-button color="warn" routerLink="/Roles">
+        Cancelar
+      </button>
+    </form>
+  </div>

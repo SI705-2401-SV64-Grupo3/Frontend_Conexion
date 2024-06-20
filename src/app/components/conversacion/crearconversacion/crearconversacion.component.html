@@ -1,0 +1,50 @@
+<div class="title-container">
+  <h2 class="title">Registro de Conversaciones</h2>
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+    <br />
+
+    <mat-form-field appearance="fill" class="example-full-width">
+      <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha"/>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-error *ngIf="form.get('fecha')?.hasError('required')"
+        >La fecha es obligatoria.</mat-error >
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Participante 1: </mat-label>
+      <mat-select formControlName="usuario1">
+        <mat-option *ngFor="let u of listaUsuario" [value]="u.id">
+          {{ u.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('usuario1')?.hasError('required')"
+        >El partipante es obligatorio.</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Participante 2: </mat-label>
+      <mat-select formControlName="usuario2">
+        <mat-option *ngFor="let c of listaUsuario" [value]="c.id">
+          {{ c.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('usuario2')?.hasError('required')"
+        >El partipante es obligatorio.</mat-error>
+    </mat-form-field>
+
+
+
+    <br />
+    <button mat-raised-button color="primary">Aceptar</button>
+    <button mat-raised-button color="warn" routerLink="/conversacion">
+      Cancelar
+    </button>
+  </form>
+</div>
