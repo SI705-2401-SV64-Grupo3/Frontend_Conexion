@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "dist/conexion-front-v2/browser/": "y",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
